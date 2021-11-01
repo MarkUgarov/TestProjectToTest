@@ -1,6 +1,6 @@
 package example.controller;
 
-import example.services.SingletonService;
+import example.services.SingletonManager;
 import mockit.Expectations;
 import mockit.MockUp;
 import mockit.Mocked;
@@ -11,15 +11,13 @@ import java.time.LocalDateTime;
 
 /**
  * Test of class {@link Controller}
- * <p>
- * Created by mgar on 15.10.2021.
  */
 public class ControllerTest {
 
     private Controller controller;
 
     @Mocked
-    private SingletonService singletonService;
+    private SingletonManager singletonManager;
 
     @Before
     public void setUp() throws Exception {
@@ -29,7 +27,7 @@ public class ControllerTest {
     @Test
     public void callService_shouldSendAlertMail_ifNotAvailable() {
         // mocking the static methods
-        new MockUp<SingletonService>() {
+        new MockUp<SingletonManager>() {
             @mockit.Mock
             public String getCurrentUserName (){
                 return "Luke";
@@ -37,14 +35,14 @@ public class ControllerTest {
         };
         // mocking the instance methods
         new Expectations() {{
-            singletonService.checkDataBaseAvailable();
+            singletonManager.checkDataBaseAvailable();
             minTimes = 1;
             result = false;
-            singletonService.giveCurrentLocalDateTime();
+            singletonManager.giveCurrentLocalDateTime();
             minTimes = 1;
             LocalDateTime expectedLocalDateTime = LocalDateTime.of(2020, 10, 15, 17, 30, 0);
             result = expectedLocalDateTime;
-            SingletonService.sendAlertMail("Luke", expectedLocalDateTime);
+            SingletonManager.sendAlertMail("Luke", expectedLocalDateTime);
             minTimes = 1;
         }};
 

@@ -2,18 +2,18 @@ package example.services;
 
 import java.time.LocalDateTime;
 
-public class SingletonService {
+public class SingletonManager {
 
-    private static SingletonService instance;
+    private static SingletonManager instance;
 
-    public static SingletonService getInstance() {
+    public static SingletonManager getInstance() {
         if (instance == null) {
-            instance = new SingletonService();
+            instance = new SingletonManager();
         }
         return instance;
     }
 
-    private SingletonService() {
+    private SingletonManager() {
 
     }
 

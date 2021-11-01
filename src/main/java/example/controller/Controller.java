@@ -1,20 +1,20 @@
 package example.controller;
 
-import example.services.SingletonService;
+import example.services.SingletonManager;
 
 public class Controller {
 
-    private final SingletonService singletonService;
+    private final SingletonManager singletonManager;
 
     public Controller() {
-        singletonService = SingletonService.getInstance();
+        singletonManager = SingletonManager.getInstance();
     }
 
     public void callService() {
-        if(!singletonService.checkDataBaseAvailable()){ // calling the instance method
-            SingletonService.sendAlertMail( // calling the class method
-                    SingletonService.getCurrentUserName(),  // calling the class method
-                    singletonService.giveCurrentLocalDateTime() // calling the instance method
+        if(!singletonManager.checkDataBaseAvailable()){ // calling the instance method
+            SingletonManager.sendAlertMail( // calling the class method
+                    SingletonManager.getCurrentUserName(),  // calling the class method
+                    singletonManager.giveCurrentLocalDateTime() // calling the instance method
             );
         }
     }
