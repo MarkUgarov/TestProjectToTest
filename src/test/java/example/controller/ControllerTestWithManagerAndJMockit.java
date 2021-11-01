@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 /**
  * Test of class {@link Controller}
  */
-public class ControllerTest {
+public class ControllerTestWithManagerAndJMockit {
 
     private Controller controller;
 
@@ -46,6 +46,6 @@ public class ControllerTest {
             minTimes = 1;
         }};
 
-        controller.callService();
+        controller.callManager();
     }
 }
