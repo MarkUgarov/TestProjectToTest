@@ -33,12 +33,14 @@ public class ControllerTestWithServiceAndMockito {
     public void callService_shouldSendAlertMail_ifNotAvailable() {
         LocalDateTime expectedLocalDateTime = LocalDateTime.of(2020, 10, 15, 17, 30, 0);
 
+        // mocking block
         doReturn(false).when(service).checkDataBaseAvailable();
         doReturn("Luke").when(service).getCurrentUserName();
         doReturn(expectedLocalDateTime).when(service).giveCurrentLocalDateTime();
 
         controller.callService();
 
+        // verification block
         verify(service).checkDataBaseAvailable();
         verify(service).getCurrentUserName();
         verify(service).giveCurrentLocalDateTime();

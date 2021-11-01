@@ -33,8 +33,8 @@ public class ControllerTestWithManagerAndJMockit {
                 return "Luke";
             }
         };
-        // mocking the instance methods
         new Expectations() {{
+            // mocking the instance methods
             singletonManager.checkDataBaseAvailable();
             minTimes = 1;
             result = false;
@@ -42,10 +42,12 @@ public class ControllerTestWithManagerAndJMockit {
             minTimes = 1;
             LocalDateTime expectedLocalDateTime = LocalDateTime.of(2020, 10, 15, 17, 30, 0);
             result = expectedLocalDateTime;
+            // mocking the static method
             SingletonManager.sendAlertMail("Luke", expectedLocalDateTime);
             minTimes = 1;
         }};
 
         controller.callManager();
+
     }
 }
