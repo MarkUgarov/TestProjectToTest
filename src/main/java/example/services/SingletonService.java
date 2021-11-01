@@ -22,11 +22,11 @@ public class SingletonService {
     }
 
     public LocalDateTime giveCurrentLocalDateTime() {
-        return LocalDateTime.now();
+        return null;
     }
 
     public static String getCurrentUserName() {
-        return "Brathans";
+        return null;
     }
 
     public static void sendAlertMail(String username, LocalDateTime localDateTime) {
