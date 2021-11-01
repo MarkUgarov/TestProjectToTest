@@ -47,7 +47,7 @@ public class ControllerTestWithManagerAndJMockitAndMockito {
         doReturn(false).when(singletonManager).checkDataBaseAvailable();
         doReturn(expectedLocalDateTime).when(singletonManager).giveCurrentLocalDateTime();
 
-        // mocking the static method
+        // mocking and verification of the static methods
         new Expectations() {{
             SingletonManager.getCurrentUserName();
             result = "Luke";
